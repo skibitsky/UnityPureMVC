@@ -1,23 +1,23 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Mediator.
+    /// The interface definition for a UnityPureMVC Mediator.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         In PureMVC, <c>IMediator</c> implementors assume these responsibilities:
+    ///         In UnityPureMVC, <c>IMediator</c> implementors assume these responsibilities:
     ///         <list type="bullet">
     ///             <item>Implement a common method which returns a list of all <c>INotification</c>s
     ///             the <c>IMediator</c> has interest in.</item>
     ///             <item>Implement a notification callback method.</item>
-    ///             <item>Implement methods that are called when the IMediator is registered or removed from the View</item>
+    ///             <item>Implement methods that are called when the IMediator is registered or removed from the MyView</item>
     ///         </list>
     ///     </para>
     ///     <para>
@@ -28,7 +28,7 @@ namespace PureMVC.Interfaces
     ///             <item>In Flash-based apps, this is often the place where event listeners are
     ///             added to view components, and their handlers implemented.</item>
     ///             <item>Respond to and generate <c>INotifications</c>, interacting with of
-    ///             the rest of the PureMVC app.</item>
+    ///             the rest of the UnityPureMVC app.</item>
     ///         </list>
     ///     </para>
     ///     <para>
@@ -71,12 +71,12 @@ namespace PureMVC.Interfaces
         void HandleNotification(INotification notification);
 
         /// <summary>
-        /// Called by the View when the Mediator is registered
+        /// Called by the MyView when the Mediator is registered
         /// </summary>
         void OnRegister();
 
         /// <summary>
-        /// Called by the View when the Mediator is removed
+        /// Called by the MyView when the Mediator is removed
         /// </summary>
         void OnRemove();
     }

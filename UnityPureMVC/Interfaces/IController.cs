@@ -1,20 +1,20 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Controller.
+    /// The interface definition for a UnityPureMVC Controller.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         In PureMVC, an <c>IController</c> implementor 
+    ///         In UnityPureMVC, an <c>IController</c> implementor 
     ///         follows the 'Command and Controller' strategy, and 
     ///         assumes these responsibilities:
     ///         <list type="bullet">
@@ -22,11 +22,11 @@ namespace PureMVC.Interfaces
     ///             are intended to handle which <c>INotifications</c>.
     ///             </item>
     ///             <item>Registering itself as an <c>IObserver</c> with
-    ///             the <c>View</c> for each <c>INotification</c> 
+    ///             the <c>MyView</c> for each <c>INotification</c> 
     ///             that it has an <c>ICommand</c> mapping for.
     ///             </item>
     ///             <item>Creating a new instance of the proper <c>ICommand</c> 
-    ///             to handle a given <c>INotification</c> when notified by the <c>View</c>.
+    ///             to handle a given <c>INotification</c> when notified by the <c>MyView</c>.
     ///             </item>
     ///             <item>Calling the <c>ICommand</c>'s <c>execute</c> 
     ///             method, passing in the <c>INotification</c>.

@@ -1,19 +1,19 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-using PureMVC.Interfaces;
-using PureMVC.Patterns.Observer;
+using UnityPureMVC.Interfaces;
+using UnityPureMVC.Patterns.Observer;
 
-namespace PureMVC.Patterns.Mediator
+namespace UnityPureMVC.Patterns.Mediator
 {
     /// <summary>
     /// A base <c>IMediator</c> implementation. 
     /// </summary>
-    /// <seealso cref="PureMVC.Core.View"/>
+    /// <seealso cref="UnityPureMVC.Core.View"/>
     public class Mediator : Notifier, IMediator, INotifier
     {
         /// <summary>
@@ -65,14 +65,14 @@ namespace PureMVC.Patterns.Mediator
         }
 
         /// <summary>
-        /// Called by the View when the Mediator is registered
+        /// Called by the MyView when the Mediator is registered
         /// </summary>
         public virtual void OnRegister()
         {
         }
 
         /// <summary>
-        /// Called by the View when the Mediator is removed
+        /// Called by the MyView when the Mediator is removed
         /// </summary>
         public virtual void OnRemove()
         {

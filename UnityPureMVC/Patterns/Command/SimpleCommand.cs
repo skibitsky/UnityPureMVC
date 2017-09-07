@@ -1,14 +1,14 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-using PureMVC.Interfaces;
-using PureMVC.Patterns.Observer;
+using UnityPureMVC.Interfaces;
+using UnityPureMVC.Patterns.Observer;
 
-namespace PureMVC.Patterns.Command
+namespace UnityPureMVC.Patterns.Command
 {
     /// <summary>
     /// A base <c>ICommand</c> implementation.
@@ -19,9 +19,9 @@ namespace PureMVC.Patterns.Command
     ///         method where your business logic will handle the <c>INotification</c>. 
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.Controller"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="PureMVC.Patterns.Command.MacroCommand"/>
+    /// <seealso cref="UnityPureMVC.Core.Controller"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
     public class SimpleCommand : Notifier, ICommand, INotifier
     {
         /// <summary>

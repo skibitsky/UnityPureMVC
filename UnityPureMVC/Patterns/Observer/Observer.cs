@@ -1,14 +1,14 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
-using PureMVC.Interfaces;
+using UnityPureMVC.Interfaces;
 
-namespace PureMVC.Patterns.Observer
+namespace UnityPureMVC.Patterns.Observer
 {
     /// <summary>
     /// A base <c>IObserver</c> implementation.
@@ -20,7 +20,7 @@ namespace PureMVC.Patterns.Observer
     ///         be called when a particular <c>INotification</c> is broadcast. 
     ///     </para>
     ///     <para>
-    ///         In PureMVC, the <c>Observer</c> class assumes these responsibilities:
+    ///         In UnityPureMVC, the <c>Observer</c> class assumes these responsibilities:
     ///         <list type="bullet">
     ///             <item>Encapsulate the notification (callback) method of the interested object.</item>
     ///             <item>Encapsulate the notification context (this) of the interested object.</item>
@@ -29,8 +29,8 @@ namespace PureMVC.Patterns.Observer
     ///         </list>
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.View"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
+    /// <seealso cref="UnityPureMVC.Core.View"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
     public class Observer: IObserver
     {
         /// <summary>

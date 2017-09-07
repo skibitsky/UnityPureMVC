@@ -1,14 +1,14 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
-using PureMVC.Interfaces;
+using UnityPureMVC.Interfaces;
 
-namespace PureMVC.Patterns.Observer
+namespace UnityPureMVC.Patterns.Observer
 {
     /// <summary>
     /// A Base <c>INotifier</c> implementation.
@@ -38,16 +38,16 @@ namespace PureMVC.Patterns.Observer
     ///         The multitonKey is set:
     ///         <list type="bullet">
     ///             <item>on a Command when it is executed by the Controller</item>
-    ///             <item>on a Mediator is registered with the View</item>
+    ///             <item>on a Mediator is registered with the MyView</item>
     ///             <item>on a Proxy is registered with the Model.</item>
     ///         </list>
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Patterns.Proxy.Proxy"/>
-    /// <seealso cref="PureMVC.Patterns.Facade.Facade"/>
-    /// <seealso cref="PureMVC.Patterns.Mediator.Mediator"/>
-    /// <seealso cref="PureMVC.Patterns.Command.MacroCommand"/>
-    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Proxy.Proxy"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Facade.Facade"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Mediator.Mediator"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
     public class Notifier: INotifier
     {
         /// <summary>
@@ -67,44 +67,7 @@ namespace PureMVC.Patterns.Observer
             Facade.SendNotification(notificationName, body, type);
         }
 
-        /// <summary>
-        /// Initialize this INotifier instance.
-        /// </summary>
-        /// <remarks>
-        ///     <para>
-        ///         This is how a Notifier gets its multitonKey. 
-        ///         Calls to sendNotification or to access the
-        ///         facade will fail until after this method 
-        ///         has been called.
-        ///     </para>
-        ///     <para>
-        ///         Mediators, Commands or Proxies may override 
-        ///         this method in order to send notifications
-        ///         or access the Multiton Facade instance as
-        ///         soon as possible. They CANNOT access the facade
-        ///         in their constructors, since this method will not
-        ///         yet have been called.
-        ///     </para>
-        /// </remarks>
-        /// <param name="key">the multitonKey for this INotifier to use</param>
-        public void InitializeNotifier(string key)
-        {
-            MultitonKey = key;
-        }
-
-        /// <summary> Return the Multiton Facade instance</summary>
-        protected IFacade Facade
-        {
-            get {
-                if (MultitonKey == null) throw new Exception(MULTITON_MSG);
-                return Patterns.Facade.Facade.GetInstance(MultitonKey, () => new Facade.Facade(MultitonKey));
-            }
-        }
-
-        /// <summary>The Multiton Key for this app</summary>
-        public string MultitonKey { get; protected set; }
-
-        /// <summary>Message Constants</summary>
-        protected string MULTITON_MSG = "multitonKey for this Notifier not yet initialized!";
+        /// <summary> Return the Facade instance</summary>
+        protected IFacade Facade => Patterns.Facade.Facade.GetInstance;
     }
 }

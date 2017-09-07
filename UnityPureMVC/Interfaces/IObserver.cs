@@ -1,20 +1,20 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Observer.
+    /// The interface definition for a UnityPureMVC Observer.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         In PureMVC, the <c>Observer</c> class assumes these responsibilities:
+    ///         In UnityPureMVC, the <c>Observer</c> class assumes these responsibilities:
     ///         <list type="bullet">
     ///             <item>Encapsulate the notification (callback) method of the interested object.</item>
     ///             <item>Encapsulate the notification context (this) of the interested object.</item>
@@ -23,12 +23,12 @@ namespace PureMVC.Interfaces
     ///         </list>
     ///     </para>
     ///     <para>
-    ///         PureMVC does not rely upon underlying event models such 
+    ///         UnityPureMVC does not rely upon underlying event models such 
     ///         as the one provided with Flash, and ActionScript 3 does 
     ///         not have an inherent event model.
     ///     </para>
     ///     <para>
-    ///         The Observer Pattern as implemented within PureMVC exists 
+    ///         The Observer Pattern as implemented within UnityPureMVC exists 
     ///         to support event-driven communication between the 
     ///         application and the actors of the MVC triad.
     ///     </para>

@@ -1,16 +1,16 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Facade.
+    /// The interface definition for a UnityPureMVC Facade.
     /// </summary>
     /// <remarks>
     ///     <para>
@@ -19,8 +19,8 @@ namespace PureMVC.Interfaces
     ///         for a subsystem.
     ///     </para>
     ///     <para>
-    ///         In PureMVC, the Facade acts as an interface between
-    ///         the core MVC actors (Model, View, Controller) and
+    ///         In UnityPureMVC, the Facade acts as an interface between
+    ///         the core MVC actors (Model, MyView, Controller) and
     ///         the rest of your application.
     ///     </para>
     /// </remarks>
@@ -79,20 +79,20 @@ namespace PureMVC.Interfaces
         bool HasCommand(string notificationName);
 
         /// <summary>
-        /// Register an <c>IMediator</c> instance with the <c>View</c>.
+        /// Register an <c>IMediator</c> instance with the <c>MyView</c>.
         /// </summary>
         /// <param name="mediator">a reference to the <c>IMediator</c> instance</param>
         void RegisterMediator(IMediator mediator);
 
         /// <summary>
-        /// Retrieve an <c>IMediator</c> instance from the <c>View</c>.
+        /// Retrieve an <c>IMediator</c> instance from the <c>MyView</c>.
         /// </summary>
         /// <param name="mediatorName">the name of the <c>IMediator</c> instance to retrievve</param>
         /// <returns>the <c>IMediator</c> previously registered with the given <c>mediatorName</c>.</returns>
         IMediator RetrieveMediator(string mediatorName);
 
         /// <summary>
-        /// Remove a <c>IMediator</c> instance from the <c>View</c>.
+        /// Remove a <c>IMediator</c> instance from the <c>MyView</c>.
         /// </summary>
         /// <param name="mediatorName">name of the <c>IMediator</c> instance to be removed</param>
         /// <returns>the <c>IMediator</c> instance previously registered with the given <c>mediatorName</c>.</returns>
@@ -120,7 +120,7 @@ namespace PureMVC.Interfaces
         ///         construct the notification yourself.
         ///     </para>
         /// </remarks>
-        /// <param name="notification">the <c>INotification</c> to have the <c>View</c> notify <c>Observers</c> of.</param>
+        /// <param name="notification">the <c>INotification</c> to have the <c>MyView</c> notify <c>Observers</c> of.</param>
         void NotifyObservers(INotification notification);
     }
 }

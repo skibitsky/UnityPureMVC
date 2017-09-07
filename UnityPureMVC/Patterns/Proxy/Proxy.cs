@@ -1,21 +1,21 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-using PureMVC.Interfaces;
-using PureMVC.Patterns.Observer;
+using UnityPureMVC.Interfaces;
+using UnityPureMVC.Patterns.Observer;
 
-namespace PureMVC.Patterns.Proxy
+namespace UnityPureMVC.Patterns.Proxy
 {
     /// <summary>
     /// A base <c>IProxy</c> implementation. 
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         In PureMVC, <c>Proxy</c> classes are used to manage parts of the 
+    ///         In UnityPureMVC, <c>Proxy</c> classes are used to manage parts of the 
     ///         application's data model.
     ///     </para>
     ///     <para>
@@ -31,7 +31,7 @@ namespace PureMVC.Patterns.Proxy
     ///         when the <c>Proxy</c> has retrieved the data from the service.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.Model"/>
+    /// <seealso cref="UnityPureMVC.Core.Model"/>
     public class Proxy: Notifier, IProxy, INotifier
     {
         /// <summary>Name of the proxy</summary>

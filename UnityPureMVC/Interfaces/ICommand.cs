@@ -1,14 +1,14 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Command.
+    /// The interface definition for a UnityPureMVC Command.
     /// </summary>
     /// <seealso cref="INotification"/>
     public interface ICommand: INotifier

@@ -1,16 +1,16 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
 using System.Collections.Generic;
-using PureMVC.Interfaces;
-using PureMVC.Patterns.Observer;
+using UnityPureMVC.Interfaces;
+using UnityPureMVC.Patterns.Observer;
 
-namespace PureMVC.Patterns.Command
+namespace UnityPureMVC.Patterns.Command
 {
     /// <summary>
     /// A base <c>ICommand</c> implementation that executes other <c>ICommand</c>s.
@@ -35,9 +35,9 @@ namespace PureMVC.Patterns.Command
     ///         to be executed.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.Controller"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
+    /// <seealso cref="UnityPureMVC.Core.Controller"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
     public class MacroCommand : Notifier, ICommand, INotifier
     {
         /// <summary>
@@ -56,7 +56,7 @@ namespace PureMVC.Patterns.Command
         /// </remarks>
         public MacroCommand()
         {
-            subcommands = new List<Func<ICommand>>();
+            Subcommands = new List<Func<ICommand>>();
             InitializeMacroCommand();
         }
 
@@ -101,7 +101,7 @@ namespace PureMVC.Patterns.Command
         /// <param name="commandClassRef">a reference to the <c>FuncDelegate</c> of the <c>ICommand</c>.</param>
         protected void AddSubCommand(Func<ICommand> commandClassRef)
         {
-            subcommands.Add(commandClassRef);
+            Subcommands.Add(commandClassRef);
         }
 
         /// <summary>
@@ -116,17 +116,16 @@ namespace PureMVC.Patterns.Command
         /// <param name="notification">the <c>INotification</c> object to be passsed to each <i>SubCommand</i>.</param>
         public virtual void Execute(INotification notification)
         {
-            while(subcommands.Count > 0)
+            while(Subcommands.Count > 0)
             {
-                Func<ICommand> commandClassRef = subcommands[0];
-                ICommand commandInstance = commandClassRef();
-                commandInstance.InitializeNotifier(MultitonKey);
+                var commandClassRef = Subcommands[0];
+                var commandInstance = commandClassRef();
                 commandInstance.Execute(notification);
-                subcommands.RemoveAt(0);
+                Subcommands.RemoveAt(0);
             }
         }
 
         /// <summary>List of subcommands</summary>
-        public IList<Func<ICommand>> subcommands;
+        public IList<Func<ICommand>> Subcommands;
     }
 }

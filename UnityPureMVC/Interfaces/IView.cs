@@ -1,17 +1,17 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC View.
+    /// The interface definition for a UnityPureMVC MyView.
     /// </summary>
     /// <remarks>
-    ///     <para>In PureMVC, the <c>View</c> class assumes these responsibilities:</para>
+    ///     <para>In UnityPureMVC, the <c>MyView</c> class assumes these responsibilities:</para>
     ///     <list type="bullet">
     ///         <item>Maintain a cache of <c>IMediator</c> instances</item>
     ///         <item>Provide methods for registering, retrieving, and removing <c>IMediators</c></item>
@@ -55,7 +55,7 @@ namespace PureMVC.Interfaces
         void NotifyObservers(INotification notification);
 
         /// <summary>
-        /// Register an <c>IMediator</c> instance with the <c>View</c>.
+        /// Register an <c>IMediator</c> instance with the <c>MyView</c>.
         /// </summary>
         /// <remarks>
         ///     <para>
@@ -75,17 +75,17 @@ namespace PureMVC.Interfaces
         void RegisterMediator(IMediator mediator);
 
         /// <summary>
-        /// Retrieve an <c>IMediator</c> from the <c>View</c>.
+        /// Retrieve an <c>IMediator</c> from the <c>MyView</c>.
         /// </summary>
         /// <param name="mediatorName">the name of the <c>IMediator</c> instance to retrieve.</param>
         /// <returns>the <c>IMediator</c> instance previously registered with the given <c>mediatorName</c>.</returns>
         IMediator RetrieveMediator(string mediatorName);
 
         /// <summary>
-        /// Remove an <c>IMediator</c> from the <c>View</c>.
+        /// Remove an <c>IMediator</c> from the <c>MyView</c>.
         /// </summary>
         /// <param name="mediatorName">name of the <c>IMediator</c> instance to be removed.</param>
-        /// <returns>the <c>IMediator</c> that was removed from the <c>View</c></returns>
+        /// <returns>the <c>IMediator</c> that was removed from the <c>MyView</c></returns>
         IMediator RemoveMediator(string mediatorName);
 
         /// <summary>

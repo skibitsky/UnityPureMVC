@@ -1,18 +1,18 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Model.
+    /// The interface definition for a UnityPureMVC Model.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         In PureMVC, <c>IModel</c> implementors provide
+    ///         In UnityPureMVC, <c>IModel</c> implementors provide
     ///         access to <c>IProxy</c> objects by named lookup.
     ///     </para>
     ///     <para>

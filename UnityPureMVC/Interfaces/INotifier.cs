@@ -1,11 +1,11 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
     /// A Base <c>INotifier</c> implementation.
@@ -46,19 +46,5 @@ namespace PureMVC.Interfaces
         /// <param name="body">the body of the notification (optional)</param>
         /// <param name="type">the type of the notification (optional)</param>
         void SendNotification(string notificationName, object body = null, string type = null);
-
-        /// <summary>
-        /// Initialize this INotifier instance.
-        /// </summary>
-        /// <remarks>
-        ///     <para>
-        ///         This is how a Notifier gets its multitonKey. 
-        ///         Calls to sendNotification or to access the
-        ///         facade will fail until after this method 
-        ///         has been called.
-        ///     </para>
-        /// </remarks>
-        /// <param name="key">the multitonKey for this INotifier to use</param>
-        void InitializeNotifier(string key);
     }
 }

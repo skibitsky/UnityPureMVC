@@ -1,23 +1,23 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
     /// A base <c>INotification</c> implementation.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         PureMVC does not rely upon underlying event models such 
+    ///         UnityPureMVC does not rely upon underlying event models such 
     ///         as the one provided with Flash, and ActionScript 3 does 
     ///         not have an inherent event model.
     ///     </para>
     ///     <para>
-    ///         The Observer Pattern as implemented within PureMVC exists 
+    ///         The Observer Pattern as implemented within UnityPureMVC exists 
     ///         to support event-driven communication between the 
     ///         application and the actors of the MVC triad.
     ///     </para>
@@ -32,12 +32,12 @@ namespace PureMVC.Interfaces
     ///         by broadcasting <c>INotification</c>s.
     ///     </para>
     ///     <para>
-    ///         A key difference between Flash <c>Event</c>s and PureMVC
+    ///         A key difference between Flash <c>Event</c>s and UnityPureMVC
     ///         <c>Notification</c>s is that <c>Event</c>s follow the 
     ///         'Chain of Responsibility' pattern, 'bubbling' up the display hierarchy 
     ///         until some parent component handles the <c>Event</c>, while
-    ///         PureMVC <c>Notification</c>s follow a 'Publish/Subscribe'
-    ///         pattern. PureMVC classes need not be related to each other in a 
+    ///         UnityPureMVC <c>Notification</c>s follow a 'Publish/Subscribe'
+    ///         pattern. UnityPureMVC classes need not be related to each other in a 
     ///         parent/child relationship in order to communicate with one another
     ///         using <c>Notification</c>s.
     ///     </para>

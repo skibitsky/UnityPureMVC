@@ -1,18 +1,18 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-namespace PureMVC.Interfaces
+namespace UnityPureMVC.Interfaces
 {
     /// <summary>
-    /// The interface definition for a PureMVC Proxy.
+    /// The interface definition for a UnityPureMVC Proxy.
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         In PureMVC, <c>IProxy</c> implementors assume these responsibilities:
+    ///         In UnityPureMVC, <c>IProxy</c> implementors assume these responsibilities:
     ///         <list type="bullet">
     ///             <item>Implement a common method which returns the name of the Proxy.</item>
     ///             <item>Provide methods for setting and getting the data object.</item>

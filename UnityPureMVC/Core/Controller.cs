@@ -1,22 +1,22 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
-using System.Collections.Concurrent;
-using PureMVC.Interfaces;
-using PureMVC.Patterns.Observer;
+using System.Collections.Generic;
+using UnityPureMVC.Interfaces;
+using UnityPureMVC.Patterns.Observer;
 
-namespace PureMVC.Core
+namespace UnityPureMVC.Core
 {
     /// <summary>
     /// A Multiton <c>IController</c> implementation.
     /// </summary>
     /// <remarks>
-    /// 	<para>In PureMVC, the <c>Controller</c> class follows the 
+    /// 	<para>In UnityPureMVC, the <c>Controller</c> class follows the 
     /// 	'Command and Controller' strategy, and assumes these 
     /// 	responsibilities:</para>
     /// 	<list type="bullet">
@@ -40,29 +40,33 @@ namespace PureMVC.Core
     /// 	    registrations.
     /// 	</para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Core.View"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Observer"/>
-    /// <seealso cref="PureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="PureMVC.Patterns.Command.SimpleCommand"/>
-    /// <seealso cref="PureMVC.Patterns.Command.MacroCommand"/>
+    /// <seealso cref="UnityPureMVC.Core.View"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer.Observer"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
     public class Controller: IController
     {
+
+        public static IController GetInstance
+        {
+            get
+            {
+                if (Controller.Instance != null) return Controller.Instance;
+                return Controller.Instance ?? (Controller.Instance = new Controller());
+            }
+        }
+
         /// <summary>
         /// Constructs and initializes a new controller
         /// </summary>
         /// <remarks>This <c>IController</c> implementation is a Multiton, 
-        ///     so you should not call the constructor 
-        ///     directly, but instead call the static Multiton
-        ///     Factory method <c>Controller.getInstance(multitonKey, () => new Controller(multitonKey))</c>
+        ///     so you should not call the constructor directly
+        ///     Factory method <c>Controller.GetInstance</c>
         /// </remarks>
-        /// <param name="key">Key of controller</param>
-        /// <exception cref="System.Exception">Thrown if instance for this Multiton key has already been constructed</exception>
-        public Controller(string key)
+        public Controller()
         {
-            if (instanceMap.TryGetValue(key, out Lazy<IController> _) && multitonKey != null) throw new Exception(MULTITON_MSG);
-            multitonKey = key;
-            instanceMap.TryAdd(multitonKey, new Lazy<IController>(() => this));
-            commandMap = new ConcurrentDictionary<string, Func<ICommand>>();
+            CommandMap = new Dictionary<string, Func<ICommand>>();
             InitializeController();
         }
 
@@ -88,18 +92,7 @@ namespace PureMVC.Core
         /// </remarks>
         protected virtual void InitializeController()
         {
-            view = View.GetInstance(multitonKey, () => new View(multitonKey));
-        }
-
-        /// <summary>
-        /// <c>Controller</c> Multiton Factory method.
-        /// </summary>
-        /// <param name="key">Key of controller</param>
-        /// <param name="controllerClassRef">the <c>FuncDelegate</c> of the <c>IController</c></param>
-        /// <returns>the Multiton instance of <c>Controller</c></returns>
-        public static IController GetInstance(string key, Func<IController> controllerClassRef)
-        {
-            return instanceMap.GetOrAdd(key, (k) => new Lazy<IController>(controllerClassRef)).Value;
+            MyView = View.GetInstance;
         }
 
         /// <summary>
@@ -109,12 +102,12 @@ namespace PureMVC.Core
         /// <param name="notification">note an <c>INotification</c></param>
         public virtual void ExecuteCommand(INotification notification)
         {
-            if (commandMap.TryGetValue(notification.Name, out Func<ICommand> commandClassRef))
-            {
-                ICommand commandInstance = commandClassRef();
-                commandInstance.InitializeNotifier(multitonKey);
-                commandInstance.Execute(notification);
-            }
+            if (!CommandMap.ContainsKey(notification.Name)) return;
+
+            var type = (Type)null;
+            type = CommandMap[notification.Name].GetType();
+            var instance = Activator.CreateInstance(type);
+            (instance as ICommand)?.Execute(notification);
         }
 
         /// <summary>
@@ -136,11 +129,9 @@ namespace PureMVC.Core
         /// <param name="commandClassRef">the <c>Func Delegate</c> of the <c>ICommand</c></param>
         public virtual void RegisterCommand(string notificationName, Func<ICommand> commandClassRef)
         {
-            if (commandMap.TryGetValue(notificationName, out Func<ICommand> _) == false)
-            {
-                view.RegisterObserver(notificationName, new Observer(ExecuteCommand, this));
-            }
-            commandMap[notificationName] = commandClassRef;
+            if (!CommandMap.ContainsKey(notificationName)) return;
+            MyView.RegisterObserver(notificationName, new Observer(ExecuteCommand, this));
+            CommandMap[notificationName] = commandClassRef;
         }
 
         /// <summary>
@@ -149,10 +140,8 @@ namespace PureMVC.Core
         /// <param name="notificationName">the name of the <c>INotification</c> to remove the <c>ICommand</c> mapping for</param>
         public virtual void RemoveCommand(string notificationName)
         {
-            if (commandMap.TryRemove(notificationName, out Func<ICommand> _))
-            {
-                view.RemoveObserver(notificationName, this);
-            }
+            if (!CommandMap.ContainsKey(notificationName)) return;
+            MyView.RemoveObserver(notificationName, this);
         }
 
         /// <summary>
@@ -162,31 +151,15 @@ namespace PureMVC.Core
         /// <returns>whether a Command is currently registered for the given <c>notificationName</c>.</returns>
         public virtual bool HasCommand(string notificationName)
         {
-            return commandMap.ContainsKey(notificationName);
+            return CommandMap.ContainsKey(notificationName);
         }
 
-        /// <summary>
-        /// Remove an IController instance
-        /// </summary>
-        /// <param name="key">multitonKey of IController instance to remove</param>
-        public static void RemoveController(string key)
-        {
-            instanceMap.TryRemove(key, out Lazy<IController> _);
-        }
+        protected static IController Instance;
 
         /// <summary>Local reference to View</summary>
-        protected IView view;
-
-        /// <summary>The Multiton Key for this Core</summary>
-        protected string multitonKey;
+        protected IView MyView;
 
         /// <summary>Mapping of Notification names to Command Class references</summary>
-        protected ConcurrentDictionary<string, Func<ICommand>> commandMap;
-        
-        /// <summary>The Multiton Controller instanceMap.</summary>
-        protected static ConcurrentDictionary<string, Lazy<IController>> instanceMap = new ConcurrentDictionary<string, Lazy<IController>>();
-
-        /// <summary>Message Constants</summary>
-        protected const string MULTITON_MSG = "Controller instance for this Multiton key already constructed!";
+        protected IDictionary<string, Func<ICommand>> CommandMap;
     }
 }

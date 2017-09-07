@@ -1,21 +1,21 @@
 ﻿//
-//  PureMVC C# Multicore
+//  UnityPureMVC C# Multicore
 //
-//  Copyright(c) 2017 Saad Shams <saad.shams@puremvc.org>
+//  Copyright(c) 2017 Saad Shams <saad.shams@UnityPureMVC.org>
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
 using System;
-using System.Collections.Concurrent;
-using PureMVC.Interfaces;
+using System.Collections.Generic;
+using UnityPureMVC.Interfaces;
 
-namespace PureMVC.Core
+namespace UnityPureMVC.Core
 {
     /// <summary>
     /// A Multiton <c>IModel</c> implementation
     /// </summary>
     /// <remarks>
-    ///     <para>In PureMVC, the <c>Model</c> class provides access to model objects (Proxies) by named lookup</para>
+    ///     <para>In UnityPureMVC, the <c>Model</c> class provides access to model objects (Proxies) by named lookup</para>
     ///     <para>The <c>Model</c> assumes these responsibilities:</para>
     ///     <list type="bullet">
     ///         <item>Maintain a cache of <c>IProxy</c> instances</item>
@@ -28,10 +28,19 @@ namespace PureMVC.Core
     ///         instances once the <c>Facade</c> has initialized the Core actors
     ///     </para>
     /// </remarks>
-    /// <seealso cref="PureMVC.Patterns.Proxy.Proxy"/>
-    /// <seealso cref="PureMVC.Interfaces.IProxy" />
+    /// <seealso cref="UnityPureMVC.Patterns.Proxy.Proxy"/>
+    /// <seealso cref="UnityPureMVC.Interfaces.IProxy" />
     public class Model: IModel
     {
+        public static IModel GetInstance
+        {
+            get
+            {
+                if (Model.Instance != null) return Model.Instance;
+                return Model.Instance ?? (Model.Instance = new Model());
+            }
+        }
+
         /// <summary>
         /// Constructs and initializes a new model
         /// </summary>
@@ -40,17 +49,11 @@ namespace PureMVC.Core
         ///         This <c>IModel</c> implementation is a Multiton, 
         ///         so you should not call the constructor 
         ///         directly, but instead call the static Multiton 
-        ///         Factory method <c>Model.getInstance(multitonKey, () => new Model(multitonKey))</c>
         ///     </para>
         /// </remarks>
-        /// <param name="key">Key of model</param>
-        /// <exception cref="System.Exception">Thrown if instance for this Multiton key has already been constructed</exception>
-        public Model(string key)
+        public Model()
         {
-            if (instanceMap.ContainsKey(key) && multitonKey != null) throw new Exception(MULTITON_MSG);
-            multitonKey = key;
-            instanceMap.TryAdd(key, new Lazy<IModel>(() => this));
-            proxyMap = new ConcurrentDictionary<string, IProxy>();
+            ProxyMap = new Dictionary<string, IProxy>();
             InitializeModel();
         }
 
@@ -70,24 +73,12 @@ namespace PureMVC.Core
         }
 
         /// <summary>
-        /// <c>Model</c> Multiton Factory method. 
-        /// </summary>
-        /// <param name="key">Key of model</param>
-        /// <param name="modelClassRef">the <c>FuncDelegate</c> of the <c>IModel</c></param>
-        /// <returns>the instance for this Multiton key </returns>
-        public static IModel GetInstance(string key, Func<IModel> modelClassRef)
-        {
-            return instanceMap.GetOrAdd(key, new Lazy<IModel>(modelClassRef)).Value;
-        }
-
-        /// <summary>
         /// Register an <c>IProxy</c> with the <c>Model</c>.
         /// </summary>
         /// <param name="proxy">proxy an <c>IProxy</c> to be held by the <c>Model</c>.</param>
         public virtual void RegisterProxy(IProxy proxy)
         {
-            proxy.InitializeNotifier(multitonKey);
-            proxyMap[proxy.ProxyName] = proxy;
+            ProxyMap[proxy.ProxyName] = proxy;
             proxy.OnRegister();
         }
 
@@ -98,7 +89,7 @@ namespace PureMVC.Core
         /// <returns>the <c>IProxy</c> instance previously registered with the given <c>proxyName</c>.</returns>
         public virtual IProxy RetrieveProxy(string proxyName)
         {
-            return proxyMap.TryGetValue(proxyName, out IProxy proxy) ? proxy : null;
+            return ProxyMap.TryGetValue(proxyName, out IProxy proxy) ? proxy : null;
         }
 
         /// <summary>
@@ -108,10 +99,9 @@ namespace PureMVC.Core
         /// <returns>the <c>IProxy</c> that was removed from the <c>Model</c></returns>
         public virtual IProxy RemoveProxy(string proxyName)
         {
-            if (proxyMap.TryRemove(proxyName, out IProxy proxy))
-            {
-                proxy.OnRemove();
-            }
+            var proxy = ProxyMap[proxyName];
+            if (proxy == null) return null;
+            proxy.OnRemove();
             return proxy;
         }
 
@@ -122,28 +112,12 @@ namespace PureMVC.Core
         /// <returns>whether a Proxy is currently registered with the given <c>proxyName</c>.</returns>
         public virtual bool HasProxy(string proxyName)
         {
-            return proxyMap.ContainsKey(proxyName);
+            return ProxyMap.ContainsKey(proxyName);
         }
 
-        /// <summary>
-        /// Remove an IModel instance
-        /// </summary>
-        /// <param name="key">multitonKey of IModel instance to remove</param>
-        public static void RemoveModel(string key)
-        {
-            instanceMap.TryRemove(key, out Lazy<IModel> _);
-        }
-
-        /// <summary>The Multiton Key for this Core</summary>
-        protected string multitonKey;
+        protected static IModel Instance;
 
         /// <summary>Mapping of proxyNames to IProxy instances</summary>
-        protected readonly ConcurrentDictionary<string, IProxy> proxyMap;
-
-        /// <summary>The Multiton Model instanceMap.</summary>
-        protected static readonly ConcurrentDictionary<string, Lazy<IModel>> instanceMap = new ConcurrentDictionary<string, Lazy<IModel>>();
-
-        /// <summary>Message Constants</summary>
-        protected const string MULTITON_MSG = "Model instance for this Multiton key already constructed!";
+        protected readonly IDictionary<string, IProxy> ProxyMap;
     }
 }
