@@ -6,9 +6,8 @@
 //
 
 using UnityPureMVC.Interfaces;
-using UnityPureMVC.Patterns.Observer;
 
-namespace UnityPureMVC.Patterns.Mediator
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A base <c>IMediator</c> implementation. 

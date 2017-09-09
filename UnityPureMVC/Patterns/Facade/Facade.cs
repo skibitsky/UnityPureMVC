@@ -8,9 +8,8 @@
 using System;
 using UnityPureMVC.Interfaces;
 using UnityPureMVC.Core;
-using UnityPureMVC.Patterns.Observer;
 
-namespace UnityPureMVC.Patterns.Facade
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A base Multiton <c>IFacade</c> implementation.
@@ -141,11 +140,11 @@ namespace UnityPureMVC.Patterns.Facade
         /// <summary>
         /// Register an <c>ICommand</c> with the <c>Controller</c> by Notification name.
         /// </summary>
-        /// <param name="notificationName">the name of the <c>INotification</c> to associate the <c>ICommand</c> with</param>
-        /// <param name="commandClassRef">a reference to the Class of the <c>ICommand</c></param>
-        public virtual void RegisterCommand(string notificationName, Func<ICommand> commandClassRef)
+        /// <param name="notificationName">the name of tBhe <c>INotification</c> to associate the <c>ICommand</c> with</param>
+        /// <param name="commandType">a reference to the Class of the <c>ICommand</c></param>
+        public virtual void RegisterCommand(string notificationName, Type commandType)
         {
-            Controller.RegisterCommand(notificationName, commandClassRef);
+            Controller.RegisterCommand(notificationName, commandType);
         }
 
         /// <summary>

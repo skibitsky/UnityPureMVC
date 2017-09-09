@@ -8,7 +8,7 @@
 using System;
 using UnityPureMVC.Interfaces;
 
-namespace UnityPureMVC.Patterns.Observer
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A Base <c>INotifier</c> implementation.
@@ -44,7 +44,7 @@ namespace UnityPureMVC.Patterns.Observer
     ///     </para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Patterns.Proxy.Proxy"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Facade.Facade"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Facade"/>
     /// <seealso cref="UnityPureMVC.Patterns.Mediator.Mediator"/>
     /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
     /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
@@ -68,6 +68,6 @@ namespace UnityPureMVC.Patterns.Observer
         }
 
         /// <summary> Return the Facade instance</summary>
-        protected IFacade Facade => Patterns.Facade.Facade.GetInstance;
+        protected IFacade Facade => Patterns.Facade.GetInstance;
     }
 }

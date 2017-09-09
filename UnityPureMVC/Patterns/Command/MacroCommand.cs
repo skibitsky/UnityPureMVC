@@ -8,9 +8,8 @@
 using System;
 using System.Collections.Generic;
 using UnityPureMVC.Interfaces;
-using UnityPureMVC.Patterns.Observer;
 
-namespace UnityPureMVC.Patterns.Command
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A base <c>ICommand</c> implementation that executes other <c>ICommand</c>s.
@@ -36,8 +35,6 @@ namespace UnityPureMVC.Patterns.Command
     ///     </para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.Controller"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
     public class MacroCommand : Notifier, ICommand, INotifier
     {
         /// <summary>

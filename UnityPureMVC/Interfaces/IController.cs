@@ -43,8 +43,8 @@ namespace UnityPureMVC.Interfaces
         ///  for a particular <c>INotification</c>.
         /// </summary>
         /// <param name="notificationName">the name of the <c>INotification</c></param>
-        /// <param name="commandClassRef">the FuncDelegate of the <c>ICommand</c></param>
-        void RegisterCommand(string notificationName, Func<ICommand> commandClassRef);
+        /// <param name="commandType">the <c>ICommand</c> type</param>
+        void RegisterCommand(string notificationName, Type commandType);
 
         /// <summary>
         /// Execute the <c>ICommand</c> previously registered as the

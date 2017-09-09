@@ -6,9 +6,8 @@
 //
 
 using UnityPureMVC.Interfaces;
-using UnityPureMVC.Patterns.Observer;
 
-namespace UnityPureMVC.Patterns.Proxy
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A base <c>IProxy</c> implementation. 

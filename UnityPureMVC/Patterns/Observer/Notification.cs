@@ -7,7 +7,7 @@
 
 using UnityPureMVC.Interfaces;
 
-namespace UnityPureMVC.Patterns.Observer
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A base <c>INotification</c> implementation.

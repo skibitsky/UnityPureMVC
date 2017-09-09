@@ -28,7 +28,7 @@ namespace UnityPureMVC.Core
     ///         instances once the <c>Facade</c> has initialized the Core actors
     ///     </para>
     /// </remarks>
-    /// <seealso cref="UnityPureMVC.Patterns.Proxy.Proxy"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Proxy"/>
     /// <seealso cref="UnityPureMVC.Interfaces.IProxy" />
     public class Model: IModel
     {

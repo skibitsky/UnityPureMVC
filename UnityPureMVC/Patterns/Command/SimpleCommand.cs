@@ -6,9 +6,8 @@
 //
 
 using UnityPureMVC.Interfaces;
-using UnityPureMVC.Patterns.Observer;
 
-namespace UnityPureMVC.Patterns.Command
+namespace UnityPureMVC.Patterns
 {
     /// <summary>
     /// A base <c>ICommand</c> implementation.
@@ -20,8 +19,7 @@ namespace UnityPureMVC.Patterns.Command
     ///     </para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.Controller"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Notification"/>
     public class SimpleCommand : Notifier, ICommand, INotifier
     {
         /// <summary>

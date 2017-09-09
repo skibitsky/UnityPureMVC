@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 using UnityPureMVC.Interfaces;
-using UnityPureMVC.Patterns.Observer;
+using UnityPureMVC.Patterns;
 
 namespace UnityPureMVC.Core
 {
@@ -26,9 +26,8 @@ namespace UnityPureMVC.Core
     ///         <item>Notifying the <c>IObservers</c> of a given <c>INotification</c> when it broadcast</item>
     ///     </list>
     /// </remarks>
-    /// <seealso cref="UnityPureMVC.Patterns.Mediator.Mediator"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Observer"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Mediator"/>
+    /// <seealso cref="UnityPureMVC.Patterns"/>>
     public class View: IView
     {
         public static IView GetInstance

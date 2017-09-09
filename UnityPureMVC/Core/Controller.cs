@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 using UnityPureMVC.Interfaces;
-using UnityPureMVC.Patterns.Observer;
+using UnityPureMVC.Patterns;
 
 namespace UnityPureMVC.Core
 {
@@ -41,10 +41,10 @@ namespace UnityPureMVC.Core
     /// 	</para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.View"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Observer"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer"/>
+    /// <seealso cref="UnityPureMVC.Patterns"/>
+    /// <seealso cref="UnityPureMVC.Patterns"/>
     public class Controller: IController
     {
 
@@ -66,7 +66,7 @@ namespace UnityPureMVC.Core
         /// </remarks>
         public Controller()
         {
-            CommandMap = new Dictionary<string, Func<ICommand>>();
+            CommandMap = new Dictionary<string, Type>();
             InitializeController();
         }
 
@@ -104,9 +104,7 @@ namespace UnityPureMVC.Core
         {
             if (!CommandMap.ContainsKey(notification.Name)) return;
 
-            var type = (Type)null;
-            type = CommandMap[notification.Name].GetType();
-            var instance = Activator.CreateInstance(type);
+            var instance = Activator.CreateInstance(CommandMap[notification.Name]);
             (instance as ICommand)?.Execute(notification);
         }
 
@@ -126,12 +124,13 @@ namespace UnityPureMVC.Core
         ///     </para>
         /// </remarks>
         /// <param name="notificationName">the name of the <c>INotification</c></param>
-        /// <param name="commandClassRef">the <c>Func Delegate</c> of the <c>ICommand</c></param>
-        public virtual void RegisterCommand(string notificationName, Func<ICommand> commandClassRef)
+        /// <param name="commandType">the <c>ICommand</c> type</param>
+        public virtual void RegisterCommand(string notificationName, Type commandType)
         {
-            if (!CommandMap.ContainsKey(notificationName)) return;
-            MyView.RegisterObserver(notificationName, new Observer(ExecuteCommand, this));
-            CommandMap[notificationName] = commandClassRef;
+            if (!CommandMap.ContainsKey(notificationName))
+                MyView.RegisterObserver(notificationName, new Observer(ExecuteCommand, this));
+            
+            CommandMap[notificationName] = commandType;
         }
 
         /// <summary>
@@ -160,6 +159,6 @@ namespace UnityPureMVC.Core
         protected IView MyView;
 
         /// <summary>Mapping of Notification names to Command Class references</summary>
-        protected IDictionary<string, Func<ICommand>> CommandMap;
+        protected IDictionary<string, Type> CommandMap;
     }
 }
