@@ -43,11 +43,11 @@ namespace UnityPureMVC.Patterns
     ///         </list>
     ///     </para>
     /// </remarks>
-    /// <seealso cref="UnityPureMVC.Patterns.Proxy.Proxy"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Proxy"/>
     /// <seealso cref="UnityPureMVC.Patterns.Facade"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Mediator.Mediator"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Command.MacroCommand"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Command.SimpleCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Mediator"/>
+    /// <seealso cref="UnityPureMVC.Patterns.MacroCommand"/>
+    /// <seealso cref="UnityPureMVC.Patterns.SimpleCommand"/>
     public class Notifier: INotifier
     {
         /// <summary>
@@ -68,6 +68,9 @@ namespace UnityPureMVC.Patterns
         }
 
         /// <summary> Return the Facade instance</summary>
-        protected IFacade Facade => Patterns.Facade.GetInstance;
+        protected IFacade Facade
+        {
+            get { return Patterns.Facade.GetInstance; }
+        }
     }
 }

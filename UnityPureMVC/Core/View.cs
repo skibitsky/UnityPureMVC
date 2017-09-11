@@ -98,7 +98,8 @@ namespace UnityPureMVC.Core
         public virtual void NotifyObservers(INotification notification)
         {
             // Get a reference to the observers list for this notification name
-            if (!ObserverMap.TryGetValue(notification.Name, out IList<IObserver> observersRef)) return;
+            IList<IObserver> observersRef;
+            if (!ObserverMap.TryGetValue(notification.Name, out observersRef)) return;
             // Copy observers from reference array to working array, 
             // since the reference array may change during the notification loop
             var observers = new List<IObserver>(observersRef);
@@ -115,7 +116,8 @@ namespace UnityPureMVC.Core
         /// <param name="notifyContext">remove the observer with this object as its notifyContext</param>
         public virtual void RemoveObserver(string notificationName, object notifyContext)
         {
-            if (!ObserverMap.TryGetValue(notificationName, out IList<IObserver> observers)) return;
+            IList<IObserver> observers;
+            if (!ObserverMap.TryGetValue(notificationName, out observers)) return;
             for (var i = 0; i < observers.Count; i++)
             {
                 if (!observers[i].CompareNotifyContext(notifyContext)) continue;
@@ -172,7 +174,9 @@ namespace UnityPureMVC.Core
         /// <returns>the <c>IMediator</c> instance previously registered with the given <c>mediatorName</c>.</returns>
         public virtual IMediator RetrieveMediator(string mediatorName)
         {
-            return MediatorMap.TryGetValue(mediatorName, out IMediator mediator) ? mediator : null;
+            IMediator mediator;
+            MediatorMap.TryGetValue(mediatorName, out mediator);
+            return mediator;
         }
 
         /// <summary>

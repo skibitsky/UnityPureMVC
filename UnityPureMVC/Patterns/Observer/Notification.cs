@@ -44,7 +44,7 @@ namespace UnityPureMVC.Patterns
     ///         using <c>Notification</c>s.
     ///     </para>
     /// </remarks>
-    /// <seealso cref="UnityPureMVC.Patterns.Observer.Observer"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer"/>
     public class Notification: INotification
     {
         /// <summary>
@@ -53,7 +53,7 @@ namespace UnityPureMVC.Patterns
         /// <param name="name">name of the <c>Notification</c> instance. (required)</param>
         /// <param name="body">the <c>Notification</c> body. (optional)</param>
         /// <param name="type">the type of the <c>Notification</c> (optional)</param>
-        public Notification(string name, object body=null, string type=null)
+        public Notification(string name, object body = null, string type = null)
         {
             Name = name;
             Body = body;
@@ -66,14 +66,14 @@ namespace UnityPureMVC.Patterns
         /// <returns>the string representation of the <c>Notification</c> instance.</returns>
         public override string ToString()
         {
-            string msg = "Notification Name: " + Name;
-            msg += "\nBody:" + ((Body == null) ? "null" : Body.ToString());
-            msg += "\nType:" + ((Type == null) ? "null" : Type);
+            var msg = "Notification Name: " + Name;
+            msg += "\nBody:" + (Body.ToString() ?? "null");
+            msg += "\nType:" + (Type ?? "null");
             return msg;
         }
 
         /// <summary>the name of the notification instance</summary>
-        public string Name { get; }
+        public string Name { get; private set; }
 
         /// <summary>the body of the notification instance</summary>
         public object Body { get; set; }

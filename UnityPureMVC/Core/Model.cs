@@ -89,7 +89,9 @@ namespace UnityPureMVC.Core
         /// <returns>the <c>IProxy</c> instance previously registered with the given <c>proxyName</c>.</returns>
         public virtual IProxy RetrieveProxy(string proxyName)
         {
-            return ProxyMap.TryGetValue(proxyName, out IProxy proxy) ? proxy : null;
+            IProxy proxy;
+            ProxyMap.TryGetValue(proxyName, out proxy);
+            return proxy;
         }
 
         /// <summary>

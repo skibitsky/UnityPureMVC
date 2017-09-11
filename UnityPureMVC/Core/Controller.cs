@@ -105,7 +105,8 @@ namespace UnityPureMVC.Core
             if (!CommandMap.ContainsKey(notification.Name)) return;
 
             var instance = Activator.CreateInstance(CommandMap[notification.Name]);
-            (instance as ICommand)?.Execute(notification);
+            var command = instance as ICommand;
+            if (command != null) command.Execute(notification);
         }
 
         /// <summary>
