@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-// ReSharper disable ArrangeAccessorOwnerBody
+﻿// ReSharper disable ArrangeAccessorOwnerBody
+// ReSharper disable InconsistentNaming
 
 namespace UnityPureMVC.Unity
 {
+    /// <summary>
+    /// Defaul Facade to use or inherit from in Unity project
+    /// </summary>
     public class UnityFacade : Patterns.Facade
     {
-        // ReSharper disable once InconsistentNaming
+        
         public const string STARTUP = "UnityFacade.StartUp";
 
         static UnityFacade() { Instance = new UnityFacade(); }

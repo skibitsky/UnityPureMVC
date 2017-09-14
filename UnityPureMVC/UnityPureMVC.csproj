@@ -71,6 +71,7 @@
     <Compile Include="Patterns\Proxy\Proxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unity\Commands\StartupMacroCommand.cs" />
+    <Compile Include="Unity\Mediator\MonoBehaviourMediator.cs" />
     <Compile Include="Unity\UnityFacade.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

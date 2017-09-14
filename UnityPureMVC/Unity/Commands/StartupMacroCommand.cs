@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityPureMVC.Interfaces;
+﻿using UnityPureMVC.Interfaces;
 using UnityPureMVC.Patterns;
 
-namespace UnityPureMVC.Unity.Commands
+namespace UnityPureMVC.Unity
 {
     public class StartupMacroCommand : MacroCommand
     {
