@@ -8,7 +8,7 @@ namespace UnityPureMVC.Unity
     /// </summary>
     public class MonoBehaviourMediator : MonoBehaviour, IMediator
     {
-
+        [SerializeField]
         private string _mediatorName = "MonoBehaviourMediator";
 
         /// <summary>The mediator name</summary>
