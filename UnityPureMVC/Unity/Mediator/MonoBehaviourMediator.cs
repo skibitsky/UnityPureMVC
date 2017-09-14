@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityPureMVC.Interfaces;
 
-namespace UnityPureMVC.Unity
+namespace UnityPureMVC
 {
     /// <summary>
     /// Mediator to use inside of Unity. 

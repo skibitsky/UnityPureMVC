@@ -5,7 +5,6 @@
 //  Your reuse is governed by the Creative Commons Attribution 3.0 License
 //
 
-using System;
 using UnityPureMVC.Interfaces;
 
 namespace UnityPureMVC.Patterns
