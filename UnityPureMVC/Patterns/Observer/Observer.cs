@@ -30,7 +30,7 @@ namespace UnityPureMVC.Patterns
     ///     </para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.View"/>
-    /// <seealso cref="UnityPureMVC.Patterns.Notification"/>
+    /// <seealso cref="UnityPureMVC.Patterns.Observer.Notification"/>
     public class Observer: IObserver
     {
         /// <summary>
@@ -53,10 +53,10 @@ namespace UnityPureMVC.Patterns
         /// <summary>
         /// Notify the interested object.
         /// </summary>
-        /// <param name="notification">the <c>INotification</c> to pass to the interested object's notification method.</param>
-        public virtual void NotifyObserver(INotification notification)
+        /// <param name="Notification">the <c>INotification</c> to pass to the interested object's notification method.</param>
+        public virtual void NotifyObserver(INotification Notification)
         {
-            NotifyMethod(notification);
+            NotifyMethod(Notification);
         }
 
         /// <summary>

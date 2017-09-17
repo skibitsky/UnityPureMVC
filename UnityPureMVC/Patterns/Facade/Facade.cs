@@ -7,6 +7,7 @@
 
 using System;
 using UnityPureMVC.Interfaces;
+using UnityPureMVC.Core;
 
 namespace UnityPureMVC.Patterns
 {

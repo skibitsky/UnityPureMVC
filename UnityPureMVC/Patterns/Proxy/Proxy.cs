@@ -31,7 +31,7 @@ namespace UnityPureMVC.Patterns
     ///     </para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.Model"/>
-    public class Proxy: Notifier, IProxy
+    public class Proxy: Notifier, IProxy, INotifier
     {
         /// <summary>Name of the proxy</summary>
         public static string NAME = "Proxy";

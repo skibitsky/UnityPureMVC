@@ -35,7 +35,7 @@ namespace UnityPureMVC.Patterns
     ///     </para>
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.Controller"/>
-    public class MacroCommand : Notifier, ICommand
+    public class MacroCommand : Notifier, ICommand, INotifier
     {
         /// <summary>
         /// Constructor.

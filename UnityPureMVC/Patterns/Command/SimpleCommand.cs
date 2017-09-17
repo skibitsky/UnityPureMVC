@@ -20,7 +20,7 @@ namespace UnityPureMVC.Patterns
     /// </remarks>
     /// <seealso cref="UnityPureMVC.Core.Controller"/>
     /// <seealso cref="UnityPureMVC.Patterns.Notification"/>
-    public class SimpleCommand : Notifier, ICommand
+    public class SimpleCommand : Notifier, ICommand, INotifier
     {
         /// <summary>
         /// Fulfill the use-case initiated by the given <c>INotification</c>.
